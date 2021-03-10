@@ -13,12 +13,13 @@
 #define STRIPE_TYPE APA102
 #define COLOR_ORDER BGR
 
+
+template <int NUM>
 class RGB_Stripe{
   public:
-    RGB_Stripe(int n);
-    RGB_Stripe(CRGB *leds, int n);
-    RGB_Stripe(CRGB *leds, int n, uint8_t brightness);
-    void initStripe();
+    RGB_Stripe();
+    RGB_Stripe(uint8_t brightness);
+    void init();
     void test();
     void clear();
     void brighten(uint8_t increment = 5);
@@ -35,8 +36,8 @@ class RGB_Stripe{
 
 
   private:
-    CRGB *_leds;
-    int _num;
+    CRGB _leds[NUM];
+    int _num=NUM;
     uint8_t _brightness = 120;
     uint8_t _min_brightness = 0;
     uint8_t _max_brightness = 200;
@@ -45,5 +46,5 @@ class RGB_Stripe{
 
 };
 
-
+#include "RGB_Stripe.cpp.h"
 #endif

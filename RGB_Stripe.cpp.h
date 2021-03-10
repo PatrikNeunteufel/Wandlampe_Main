@@ -1,32 +1,30 @@
-#include "RGB_Stripe.h"
 
-RGB_Stripe::RGB_Stripe(int n){
-  _num = n;
+template <int NUM>
+RGB_Stripe<NUM>::RGB_Stripe(){
 }
-RGB_Stripe::RGB_Stripe(CRGB *leds, int n){
-  _leds=leds;
-  _num = n;
-}
-RGB_Stripe::RGB_Stripe(CRGB *leds, int n, uint8_t brightness){
-  _leds=leds;
-  _num = n;
+template <int NUM>
+RGB_Stripe<NUM>::RGB_Stripe(uint8_t brightness){
   _brightness= brightness;
 }
-void RGB_Stripe::initStripe(){
+template <int NUM>
+void RGB_Stripe<NUM>::init(){
   FastLED.addLeds<STRIPE_TYPE, DATA_PIN,CLOCK_PIN,COLOR_ORDER>(_leds, _num);
   FastLED.setBrightness(_brightness);
 }
-void RGB_Stripe::test(){
+template <int NUM>
+void RGB_Stripe<NUM>::test(){
   _leds[0]=CRGB::Red;
   _leds[1]=CRGB::Green;
   _leds[2]=CRGB::Blue;
   FastLED.show();
 }
-void RGB_Stripe::clear(){
+template <int NUM>
+void RGB_Stripe<NUM>::clear(){
   fill_solid(_leds, _num, CRGB::Black);
   FastLED.show();
 }
-void RGB_Stripe::brighten(uint8_t increment){
+template <int NUM>
+void RGB_Stripe<NUM>::brighten(uint8_t increment){
   if(_brightness + increment >= _max_brightness ){
    _brightness = _max_brightness;
   }else{
@@ -34,7 +32,8 @@ void RGB_Stripe::brighten(uint8_t increment){
     }
    FastLED.setBrightness(_brightness);
   }
-void RGB_Stripe::darken(uint8_t decrement){
+template <int NUM>
+void RGB_Stripe<NUM>::darken(uint8_t decrement){
   if(_brightness - decrement <= _min_brightness){
     _brightness=_min_brightness;
   }else{
@@ -42,34 +41,43 @@ void RGB_Stripe::darken(uint8_t decrement){
   }
   FastLED.setBrightness(_brightness);
 }
-uint8_t  RGB_Stripe::getBrightness(){
+template <int NUM>
+uint8_t  RGB_Stripe<NUM>::getBrightness(){
   return _brightness;
 }
-uint8_t  RGB_Stripe::getMinBrightness(){
+template <int NUM>
+uint8_t  RGB_Stripe<NUM>::getMinBrightness(){
   return _min_brightness;
 }
-uint8_t  RGB_Stripe::getMaxBrightness(){
+template <int NUM>
+uint8_t  RGB_Stripe<NUM>::getMaxBrightness(){
   return _max_brightness;
 }
-void RGB_Stripe::setBrightness(uint8_t brightness, bool apply){
+template <int NUM>
+void RGB_Stripe<NUM>::setBrightness(uint8_t brightness, bool apply){
   _brightness=brightness;
   if(apply){
     FastLED.setBrightness(_brightness);
   }
 }
-void RGB_Stripe::setMinBrightness(uint8_t brightness){
+template <int NUM>
+void RGB_Stripe<NUM>::setMinBrightness(uint8_t brightness){
   _min_brightness=brightness;
 }
-void RGB_Stripe::setMaxBrightness(uint8_t brightness){
+template <int NUM>
+void RGB_Stripe<NUM>::setMaxBrightness(uint8_t brightness){
   _max_brightness=brightness;
 }
-void RGB_Stripe::setColor(CRGB color){
+template <int NUM>
+void RGB_Stripe<NUM>::setColor(CRGB color){
   _rgbColor=color;
 }
-void RGB_Stripe::setColor(CHSV color){
+template <int NUM>
+void RGB_Stripe<NUM>::setColor(CHSV color){
   _hsvColor=color;
 }
-void RGB_Stripe::callProgram(uint8_t number){
+template <int NUM>
+void RGB_Stripe<NUM>::callProgram(uint8_t number){
   switch(number){
     case 0:{
       test();

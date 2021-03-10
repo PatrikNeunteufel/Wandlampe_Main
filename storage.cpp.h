@@ -1,4 +1,4 @@
-//#include "storage.h"
+
 
 template <typename STRUCT>
 Storage<STRUCT>::Storage(int address, int size){
