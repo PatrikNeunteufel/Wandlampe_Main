@@ -1,0 +1,15 @@
+- Startup Sign when power back with no light switched on (with mobile or buttons)
+- setup the orientation for the startingpixel of the led-stripe
+  - optional with MPU 5060 (GY-521)
+- add audio-in (microphone) to create vu-meter programs
+- implemetation for the control of the main light (power LED, pwm for MOSFET)
+- add WIFI / Bluetooth, as soon i get my NodeMCU
+- 3d Print the case and count the final number of LED per Side
+
+
+after Prototype:
+- create Master/Slave system for multiple Lamps
+- Slaves only need a Arduino Nano or maybe a reduced Clone
+- Maste maybe Arduino Mega or extended Memory
+- Think about power refreshing units
+
